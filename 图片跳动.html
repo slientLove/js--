@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片跳动</title>
+	<style type="text/css">
+		#div1{ width: 200px;height: 150px;border: 1px solid red;margin: 20px auto;overflow: hidden; }
+	</style>
+	<script>
+		window.onload = function(){
+			var oImg = document.getElementsByTagName('img');
+			var num=0;
+			setInterval(function(){
+				oImg[num].style.display = 'none';
+				num++;
+				if(num==oImg.length){
+					num=0;
+				}
+				oImg[num].style.display = 'block';
+			},100);
+		};
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<img src="img1/金山1.jpg">
+		<img src="img1/金山.jpg">
+		<img src="img1/陆家嘴.jpg">
+		<img src="img1/高塔.jpg">
+		<img src="img1/高楼.jpg">
+		<img src="img1/西津古渡.jpg">
+		<img src="img1/天空.jpg">
+		<img src="img1/高架桥.jpg">
+	</div>
+</body>
+</html>

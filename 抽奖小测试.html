@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#div1{ margin: 0 auto;text-align: center;font-size: large;color: red;line-height: 100px; width: 200px;height: 100px;}
+		#btn1{position: absolute;top: 120px;left: 600px;}
+		#btn2{position: absolute;top: 120px;left: 700px;}
+	</style>
+	<title></title>
+</head>
+<body>
+	<div id="div1">1</div>
+	<input type="button" id="btn1" value="开始">
+	<input type="button" id="btn2" value="结束" >
+	<script type="text/javascript">
+		window.onload = function(){
+			var oBtn1 = document.getElementById("btn1");
+			var oBnt2 = document.getElementById("btn2");
+			var oDiv = document.getElementById("div1");
+			var timer = null;
+			oBtn1.onclick = oStart;
+			oBnt2.onclick = oStop;
+			function oProduct(){
+			var arr = ["华为meta8","iphone7","谢谢参与","小米5","超市购物券100元"];
+			var temp = Math.floor(Math.random()*5);			//获取一个随机数，并向下取整
+			oDiv.innerHTML =arr[temp]; 
+			}
+			function oStart(){
+				clearInterval(timer);
+				timer = setInterval(oProduct,50);
+			}
+			function oStop(){
+				clearInterval(timer);
+			}
+
+//************************************获取键盘事件*******************************//
+			var isDown = true;	//设置一个全局变量，用来判断回车键是第几次按下,不能设为局部的
+			document.onkeyup = function(ev){
+				var event=ev||event;			//做浏览器的兼容
+				// console.log(event.keyCode);		//获取键盘上按下的键值
+				if(event.keyCode==13){
+					if(isDown){
+						clearInterval(timer);
+						timer = setInterval(oProduct,50);
+						isDown = false;
+					}else{
+						clearInterval(timer);
+						isDown = true;
+					}
+					
+				}
+			}
+		};
+		
+	</script>
+</body>
+</html>

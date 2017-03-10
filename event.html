@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+		<script type="text/javascript">
+		// document.cookie="user";
+		// document.cookie="passward"//cookie不会被覆盖；
+		function setCookie(name,value,daysToLive){
+			var oDate=new Date();
+			oDate.setDate(oDate.getDate()+daysToLive)
+
+			document.cookie=name+'='+value+';expires='+oDate;
+		}
+		setCookie('userName','CuteBlackCat',30);//必须使用字符串的形式存储；
+		setCookie('passward','123456',1);
+		function getCookie(name)
+		{
+			//userName=CuteBlackCat;passward=123456;//实际上expire不会表达存储。利用字符串切片来将存储的cookie隔开
+			var arry=document.cookie.split(';');
+			var i=0;
+			console.log(arry);
+			for(i=0;i<arry.length;i++){
+				var arry2=arry[i].split('=');
+				console.log(arry2);
+				//arry2[0]=userName;arry2[1]=CuteBlackCat;
+				if(arry2[0]==name){
+					return arry2[1];
+				}
+				
+			}
+			return ;//当没有存储所需要的cookie的时候；
+		}
+		console.log(getCookie('userName'));
+		console.log(getCookie('passward'));
+
+	</script>
+	
+</body>
+</html>

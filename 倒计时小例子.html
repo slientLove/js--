@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>研究生考试时间</title>
+<link rel="stylesheet" href="style.css"  />
+</head>
+<script language="javascript" type="text/javascript">     
+  window.onload = function(){
+  		var oTxt = document.getElementById("timeShow");
+　　	var ogetTime = new Date("2017,1,1");			//设置目标时间
+		var ocurrentTime = new Date();
+		var txt = ogetTime.getTime()-ocurrentTime.getTime();		//将时间转换成毫秒数
+			txt = Math.ceil(txt/(24*60*60*1000));
+			oTxt.innerHTML = txt;
+    }
+</script>
+</head>
+<body>
+   <div class="content2">
+    <div class="txtshow">距离设置时间还有<span  id="timeShow"></span>天</div>
+   </div>
+</body>
+</html>

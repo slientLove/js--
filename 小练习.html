@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>浏览器对象</title>
+</head>
+<body>
+	<div id="div1">
+		<h4 id="txt">a秒后返回</h4>
+		<a href="##" id="a1">返回</a>
+	</div>
+	
+<script type="text/javascript">  
+ 	var oTxt = document.getElementById("txt");
+ 	var oBtn = document.getElementById("a1");
+   //获取显示秒数的元素，通过定时器来更改秒数。
+   		var num=5;
+   		function timer(){
+   			oTxt.innerHTML = num+"秒后返回";
+   			num--;
+   			if(num>0){
+   				setTimeout("timer()",2000);
+   			}else{
+   				window.open("www.imooc.com/","_blank","width=300,height=300");
+   			}
+   		}
+   //通过window的location和history对象来控制网页的跳转。
+   		timer();
+   		oBtn.onclick = function(){
+   			window.history.back();
+   		}
+ </script> 
+</body>
+</html>

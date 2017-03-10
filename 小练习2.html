@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title> new document </title>  
+  <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>   
+  <script type="text/javascript"> 
+      window.onload  =function(){
+          var oTab = document.getElementById("tab");
+          var oTxt1 = document.getElementById("btn1");
+          var oTxt2 = document.getElementById("btn2");
+          var oBtn = document.getElementById("btn3");
+
+        var oTr = oTab.tBodies[0].rows;           //表格的简便写法，减少了代码的冗余量
+        var oA = document.getElementsByTagName('a');
+        // for(var i=0;i<oTr.length;i++){
+        //     var oldColor = null;            //创建一个变量，用来存储先前的颜色值
+        //     oTr[i].onmouseover = function(){
+        //         oldColor = this.style.background;
+        //         this.style.background ="#ccf";
+        //     }
+        //     oTr[i].onmouseout = function(){
+        //         this.style.background = oldColor;
+        //     }
+        // }
+      //用上面这种方法，后来新添加的就不会效果，可以用下面的事件委托,将事件加在父级身上
+
+      oTab.onmouseover = function(ev){            //鼠标移入
+          var target = ev.target?ev.target:ev.srcElement;
+          if(target.nodeName.toLowerCase()=="td"){
+            target.parentNode.style.background = 'red';
+          }
+      }
+
+       oTab.onmouseout = function(ev){             //鼠标移出
+          var target = ev.target?ev.target:ev.srcElement;
+          if(target.nodeName.toLowerCase()=="td"){
+              if()
+            target.parentNode.style.background ='';
+          }
+      }
+/***********************************创建添加事件******************************************/
+      oBtn.onclick = function(){
+           var oTr1 = document.createElement("tr");
+           var Td = null;
+          
+          Td = document.createElement("td");
+           Td.innerHTML = oTxt1.value;
+           oTr1.appendChild(Td);
+
+          Td = document.createElement("td");
+          Td.innerHTML = oTxt2.value;
+          oTr1.appendChild(Td);
+
+          Td = document.createElement("td");
+          Td.innerHTML = '<a href="##">删除</a>';
+          oTr1.appendChild(Td);
+
+          oTab.tBodies[0].appendChild(oTr1);
+
+          Td.getElementsByTagName('a')[0].onclick = function(){
+             oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+          }
+      }
+    }
+       
+  </script> 
+ </head> 
+ <body> 
+     <table border="1" width="50%" id="tab">
+          <thead>
+               <tr>
+                  <th>学号</th>
+                  <th>姓名</th>
+                  <th>操作</th>
+             </tr>  
+          </thead>
+          <tbody>
+                <tr>
+                  <td>xh001</td>
+                  <td>王小明</td>
+                  <td><a href="javascript:;" >删除</a></td>  
+                </tr>
+
+                <tr>
+                  <td>xh002</td>
+                  <td>刘小芳</td>
+                  <td><a href="javascript:;">删除</a></td>   
+                </tr>  
+          </tbody>
+     </table>
+     学号:<input type="text" id="btn1">
+     姓名:<input type="text" id="btn2">
+     <input type="button" value="添加一行" id="btn3" />   <!--在添加按钮上添加点击事件  -->
+ </body>
+</html>

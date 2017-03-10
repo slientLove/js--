@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+		<input type="button" id="btn1" value="1">
+		<input type="button" id="btn2" value="2">	
+		<input type="button" id="btn3" value="3">
+		<script>
+			window.onload = function(){
+				var oBtn1 = document.getElementById("btn1");
+				var oBtn1 = document.getElementById("btn1");
+				var oBtn1 = document.getElementById("btn1");
+				// oBtn1.addEventListener('click',show,false);		//此处只写函数名，不需要加括号和引号,最后一个参数是指明以冒泡事件呈现
+
+				//删除事件
+				// oBtn1.removeEventListener('click',show,false);
+
+
+//*****************************封装跨浏览器兼容性问题******************************//
+		var EventShow = {
+			addHander:function(element,type,hander){
+				if(element.addEventListener){
+					element.addEventListener(type,hander,false);	//DOM2级事件
+				}else if(element.attachEvent){
+					element.attachEvent('on'+type,hander);
+				}else{
+					element['on'+type] = hander;		//DOM0级事件
+				}
+			},
+			reMoveHander:function(){
+				if(element.removeEventListener){
+					element.removeEventListener(type,hander,false);	//DOM2级事件
+				}else if(element.detachEvent){
+					element.detachEvent('on'+type,hander);
+				}else{
+					element['on'+type] = null;		//DOM0级事件
+				}
+			}
+		}
+		EventShow.addHander(btn1,'click',show)
+
+			};
+			function show(){
+				alert("hello world");
+			}
+}
+		</script>		
+</body>
+</html>

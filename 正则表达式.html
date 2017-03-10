@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>正则表达式</title>
+</head>
+<body>
+
+      <input type="text" id="txt">
+      <input type="button" id="btn" value="校验">
+      <script type="text/javascript">
+        window.onload = function(){
+            var str = "小红:80,愚小子:90,小白:80,小小:70;";
+            var re = /\d+/g;                      //匹配多个数字
+           // alert(str.match(re));
+
+
+      /*********************************校验qq号***********************/
+            var str = "小号:2467567809,大号:245673689,检验号:45234565234323";
+            var re = /[1-9]\d{4,10}/g;
+            //alert(str.match(re));     
+            var oBtn = document.getElementById("btn");
+            var oTxt = document.getElementById("txt");
+            oBtn.onclick = function(){
+              var str = oTxt.value;
+               var re = /^\w+@[1-9a-z]+\.[a-z]{2,4}$/ig;        //^和$可以在首尾进行检验，去除不必要的字符，进行严格匹配
+               if(re.test(str)){
+                  alert("填写正确");
+               }else{
+                alert("填写错误");
+               }
+            }
+        };
+      </script>
+</body>
+</html>

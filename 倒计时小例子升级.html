@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>团购——限时抢</title>
+<link rel="stylesheet" href="style.css"  />
+</head>
+
+<body>
+<div class="content3">
+<div class="time">还剩 <span id="LeftTime"></span></div>
+</div>
+<script>
+        function showTime(){
+               var oTxt = document.getElementById("LeftTime");
+        var ogetTime = new Date("2016/12/31,23:59:59");
+        var oCurrentTime = new Date();
+        var result = ogetTime.getTime()-oCurrentTime.getTime();
+        var D = Math.floor(result/(24*60*60*1000));
+        var H = Math.ceil(result/(60*60*1000)%24);       
+                             //  一天24小时，对天数取模，则可以得出剩余天数
+        var M = Math.ceil(result/(60*1000)%60);     //对小时取模，得出剩余的分钟数（一小时60分钟）
+        var S = Math.floor(result/(1000)%60);       //对分钟取模即可，得出剩余秒数
+        oTxt.innerHTML = "距离2017年还有:"+D+"天"+H+"时"+M+"分"+S+"秒";
+        };
+        setInterval(showTime,1000);
+        
+</script>
+</body>
+</html>

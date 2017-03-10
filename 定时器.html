@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript">
+			 var attime;
+			  function clock(){
+			    var time=new Date();          
+			    attime= time.getHours()+"时"+time.getMinutes()+"分"+time.getSeconds()+"秒";
+			    document.getElementById("clock").value = attime;
+			  }
+			    setInterval(function(){			//此处写执行的函数,必须要加上函数
+			    	clock();
+			    },1000);
+	</script>
+</head>
+<body>
+	<form>
+		<input type="text" id="clock" size="50"/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="div1">
+		<input type="button" id="btn1" value="1">
+		<input type="button" id="btn2" value="2">	
+	</div>
+		<script>
+	window.onload = function(){
+		var oBtn1 = document.getElementById("btn1");
+		var oBtn2 = document.getElementById("btn2");
+		var oDiv = document.getElementById("div1");
+
+		var EventShow = {
+			addHander:function(element,type,hander){			//添加一个事件
+				if(element.addEventListener){
+					element.addEventListener(type,hander,false);	//DOM2级事件
+				}else if(element.attachEvent){
+					element.attachEvent('on'+type,hander);
+				}else{
+					element['on'+type] = hander;		//DOM0级事件
+				}
+			},
+			reMoveHander:function(element,type,hander){
+				if(element.removeEventListener){
+					element.removeEventListener(type,hander,false);	//删除一个事件
+				}else if(element.detachEvent){
+					element.detachEvent('on'+type,hander);
+				}else{
+					element['on'+type] = null;		//DOM0级事件
+				}
+			}
+		};
+		EventShow.addHander(oBtn1,'click',show);	//点击按钮1时，会触发父级事件，向上冒泡
+		EventShow.addHander(oDiv,'click',function(){
+			alert('这是父级元素');
+		});
+	}
+		function show(event){					//事件对象,type获取事件类型
+			alert(event.type);
+			alert(event.target.nodeName);	  //获取事件目标，判断事件加在哪个元素上
+		}
+	</script>		
+</body>
+</html>

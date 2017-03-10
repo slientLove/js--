@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>信息滚动</title>
+   <style type="text/css">
+   *{ margin: 0;padding: 0 }
+/*         父级容器
+*/   #area{ margin: 20px auto;width: 400px;height: 25px;border: 1px solid black; overflow: hidden; }
+   
+/*   中间容器
+*/   #box{ width: 400px;height: 200px;overflow: hidden; }
+
+
+   #box ul li{ height: 25px;font-size: 12px; text-align: center;inline-height:30px;}
+   #box ul li a{ display:inline-block;height: 25px;text-decoration: none;width: 200px;}
+   a:hover{ background: #ccc; }
+   </style>
+</head>
+<body>
+	<div id="area">
+      <div id="box">
+	     <ul id="ul1">
+            <li><a href="##">1即刻出发,踮起脚尖</a></li>
+            <li><a href="##">2即刻出发,踮起脚尖</a></li>
+            <li><a href="##">3即刻出发,踮起脚尖</a></li>
+            <li><a href="##">4即刻出发,踮起脚尖</a></li>
+            <li><a href="##">5即刻出发,踮起脚尖</a></li>
+            <li><a href="##">6即刻出发</a></li>
+            <li><a href="##">7即刻出发</a></li>
+            <li><a href="##">8即刻出发</a></li>
+        </ul>
+        <ul id="ul2"></ul>                <!-- 放置两个ul,这个用来克隆第一个的内容 -->
+      </div>
+	</div>
+	
+<script type="text/javascript">  
+      var oBox = document.getElementById("box");
+      var oUl1 = document.getElementById("ul1");
+      var oUl2 = document.getElementById("ul2");
+     oUl2.innerHTML= oUl1.innerHTML;
+      var timer=null;
+      var oLiHight = 25;
+      var speed = 1000;
+      oBox.scrollTop= 0;
+      oBox.onmouseover = function(){                        //鼠标移入移出事件
+         clearInterval(timer);
+      }
+       oBox.onmouseout = function(){
+          timer=setInterval("startMove()",oLiHight);        //设置定时器
+      }
+       function Move(){
+         oBox.scrollTop++;
+         timer=setInterval("startMove()",oLiHight);
+      }
+      function startMove(){
+         if(oBox.scrollTop%oLiHight==0){              //当走了指定个高度后，等待一会在执行
+            clearInterval(timer);
+            setTimeout("Move()",speed );
+         }else{
+               oBox.scrollTop++;
+               if(oBox.scrollTop>= oBox.offsetHeight){          //当超出到容器的一半时，就退回来,形成无缝
+                  oBox.scrollTop=0;
+               }
+         }
+      }
+    setTimeout("Move()",speed );             //初始化，开始时隔两秒执行
+ </script> 
+</body>
+</html>
